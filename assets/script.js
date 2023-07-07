@@ -4,7 +4,7 @@ var quiz= document.querySelector('#quiz');
 var end= document.querySelector('#end');
 var timer=document.querySelector('#timer');
 // Timer
-var time=10;
+var time=60;
 var timeInterval;
 var questionIndex = 0;
 
@@ -12,7 +12,7 @@ var questionIndex = 0;
 var questionItems = [
   {
     question:  "Question #1: What does HTML stand for?", 
-    choices: ["A. Hyper Text Marking Language", "B. Hyper Text Marketing Language", "C. Hyper Text Markup Language", "D. Hyper Text Markup Leveler"], 
+    choices: ["A. Hyper Text Marking Language", "B. Hyper Text Marketing Language", "C. Hyper Text Markup Language", "D. Hyper Text Markup Leveler"],
     answer: "C. Hyper Text Markup Language"
   },
   {
@@ -90,21 +90,25 @@ function startQuiz(){
     if (time<=0) {
       quizOver();
     }
-  },1000)
+  },1000);
   // call the next function to get a question
-  getQuestion()
+  getQuestion()  
 
 }
 
-function getQuestion() {
-
+function getQuestion(n) {
+  askQuestion.textContent=questionItems[n].question;
+  answerBtn1.textContent=questionItems[n].choices[0];
+  answerBtn2.textContent=questionItems[n].choices[1];
+  answerBtn3.textContent=questionItems[n].choices[2];
+  answerBtn4.textContent=questionItems[n].choices[3];
 }
 
 function quizOver() {
   console.log('Quiz Over');
   // stop timer
   clearInterval(timeInterval);
-  // hode quiz section
+  // hide quiz section
 
   // show end quiz section
 
