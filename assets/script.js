@@ -9,68 +9,130 @@ var timeInterval;
 var questionIndex = 0;
 
 
-var questionItems = [
+var questions = [
   {
     question:  "Question #1: What does HTML stand for?", 
-    choices: ["A. Hyper Text Marking Language", "B. Hyper Text Marketing Language", "C. Hyper Text Markup Language", "D. Hyper Text Markup Leveler"],
-    answer: "C. Hyper Text Markup Language"
+    choices:[
+    {text:"Hyper Text Marking Language", correct: false}, 
+    {text: "Hyper Text Marketing Language", correct: false}, 
+    {text: "Hyper Text Markup Language", correct: true}, {text: "Hyper Text Markup Leveler", correct: false},
+  ]
   },
+
   {
     question:  "Question #2: _____ is the process of finding errors and fixing them within a program.",
-    choices: ["A. Compiling", "B. Executing", "C. Debugging", "D. Scanning"],
-    answer: "C. Debugging"
+    choices: [
+    {text: "Compiling", correct: false},
+    {text: "Executing", correct: false},
+    {text: "Debugging", correct: true},
+    {text: "Scanning", correct: false},
+    ]
+  
   },
   { 
     question: "Question #3: If I say the word ALGORITHM, what am I talking about?",
-    choices: ["A. We all to to a store called Rithm", "B. Algae that can dance", "C. A new dance move", "D. A list of steps you follow to finish a task"],
-    answer: "D. A list of steps you follow to finish a task"
+    choices: [
+      {text: "We all to to a store called Rithm", correct: false},
+      {text: "Algae that can dance", correct: false},
+      {text: "A new dance move", correct: false},
+      {text: "A list of steps you follow to finish a task", correct: true},
+    ]
+    
   },
   {
     question: "Question #4: What does CSS stand for?",
-    choices: ["A. Cash Spending Secrets", "B. Cascading Style Sheets", "C. Computer Stupid System", "D. Corporate Secret Service"],
-    answer: "B. Cascading Style Sheets"
+    choices: [
+      {text: "Cash Spending Secrets", correct: false},
+      {text: "Cascading Style Sheets", correct: true},
+      {text: "Computer Stupid System", correct: false},
+      {text: "Corporate Secret Service", correct: false},
+    ]
+    
   },
   {
     question: "Question #5: Which keyboard symbol is used to indicate a closing tag?",
-    choices: ["A. Angle bracket", "B. Hashtag or number sign", "C. Asterisk", "D. Forward slash"],
-    answer: "D. Forward slash"
+    choices: [
+      {text: "Angle bracket", correct: false},
+      {text: "Hashtag or number sign", correct: false},
+      {text: "Asterisk", correct: false},
+      {text: "Forward slash", correct: true},
+    ]
+    
   },
   {
     question: "Question #6: What tag is used to define a hyperlink, or link to another page?",
-    choices: ["A. <blockquote>", "B. <strong>", "C. <a>", "D. <em>"],
-    answer: "C. <a>"
+    choices: [
+      {text: "<blockquote>", correct: false},
+      {text: "<strong>", correct: false},
+      {text: "<a>", correct: true},
+      {text: "<em>", correct: false},
+    ]
+    
   },
   {
     question: "Question #7: What tag is used to define a standard cell inside a table",
-    choices: ["A. <button>", "B. <footer>", "C. <h1> to <h6>", "D. <td>"],
-    answer: "D. <td>"
+    choices: [
+      {text: "<button>", correct: false},
+      {text: "<footer>", correct: false},
+      {text: "<h1> to <h6>", correct: false},
+      {text: "<td>", correct: true},
+    ]
+    
   },
   {
     question: "Question #8: In CSS and HTML, colors are displayed by combining these three shades of light:",
-    choices: ["A. Mauve, Salmon, and Black", "B. Red, Blue, and Green", "C. Yellow, Blue, and Green", "D. Violet, Red, and Orange"],
-    answer: "B. Red, Blue, and Green"
+    choices: [
+      {text: "Mauve, Salmon, and Black", correct: false},
+      {text: "Red, Blue, and Green", correct: true},
+      {text: "Yellow, Blue, and Green", correct: false},
+      {text: "Violet, Red, and Orange", correct: false},
+    ]
+    
   },
   {
     question: "Question #9: What is the value called that defines colors such as the following: #FFFF00?",
-    choices: ["A. Color value", "B. RGB value", "C. Hex value", "D. Decimal value" ],
-    answer: "C. Hex value"
+    choices: [
+      {text: "Color value", correct: false},
+      {text: "RGB value", correct: false},
+      {text: "Hex value", correct: true},
+      {text: "Decimal value", correct: false},
+     ]
+    
   },
   {
     question: "Question #10: What is the CSS property that offers extra information about something when you hover over an element?",
-    choices: ["A. Tooltip", "B. Tutorial", "C. Hint", "D. Info block"],
-    answer: "A. Tooltip"
+    choices: [
+      {text: "Tooltip", correct: true},
+      {text: "Tutorial", correct: false},
+      {text: "Hint", correct: false},
+      {text: "Info block", correct: false},
+    ]
+    
   },
   {
     question:  "Question #11: What is a JavaScript element that represents either TRUE or FALSE values?",
-    choices: ["A. Boolean", "B. Condition", "C. Event", "D. Do something"],
-    answer: "A. Boolean"
+    choices: [
+      {text: "Boolean", correct: true},
+      {text: "Condition", correct: false},
+      {text: "Event", correct: false},
+      {text: "Do something", correct: false},
+    ]
+    
   },
   {
     question:  "Question #12: What can loops offer JavaScript code as a whole?",
-    choices: ["A. Added plug-ins", "B. Cross-platform support", "C. Cleaner syntax", "D. Improved performance"],
-    answer: "D. Improved performance"
+    choices: [
+      {text: "Added plug-ins", correct: false},
+      {text: "Cross-platform support", correct: false},
+      {text: "Cleaner syntax", correct: false},
+      {text: "Improved performance", correct: true},
+    ]
+    
   }
 ];
+  for (let i=0; i<questionItems; i++){
+    const currItem=questionItems[i]
+  }
 
 
 function startQuiz(){
@@ -104,6 +166,21 @@ function getQuestion(n) {
   answerBtn4.textContent=questionItems[n].choices[3];
 }
 
+function showQuestions (questions, quizContainer){
+  var outut = [];
+  var answers;
+  for (var i=0; i<questions.length; i++){
+    answers = [];
+    for(letter in questions [i].answers){
+      answers.push(
+        '<label>'
+          +'<input type="radio" name="question'+i+'" value="'+letter+'>'
+          + letter + ': '
+          + questions[i].answers[letter]
+        + '<label>'
+    );
+  }
+}
 function quizOver() {
   console.log('Quiz Over');
   // stop timer
@@ -115,5 +192,5 @@ function quizOver() {
 }
 
 
-startBtn.addEventListener("click", startQuiz)
+startBtn.addEventListener("click", startQuiz);
 

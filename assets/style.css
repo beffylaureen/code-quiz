@@ -29,14 +29,26 @@ main p {
 }
 
 main button {
-  display: inline-block;
+  display: grid;
   background-color: navy;
   padding: 20px;
   width: 200px;
   color: white;
   font-weight: bolder;
   text-align: center;
+  margin: auto;
 }
 
+.quiz h2 {
 
-  
+}
+#next-btn{
+  display: grid;
+  background-color: navy;
+  padding: 20px;
+  width: 200px;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+  margin: auto;
+}  
