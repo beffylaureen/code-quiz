@@ -1,0 +1,42 @@
+*{
+  box-sizing: border-box;
+  padding: 20px;
+  margin:20px;
+}
+
+
+body {
+  background-color: floralwhite;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+  font-size: larger;
+}
+
+h1 {
+  text-align: center;
+  color: navy;
+  font-size: 56px;
+}
+
+main p {
+  text-align: center;
+  color: navy;
+  font-size: 40px;
+
+
+}
+
+main button {
+  display: inline-block;
+  background-color: navy;
+  padding: 20px;
+  width: 200px;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+}
+
+
+  
