@@ -40,8 +40,20 @@ main button {
   margin: auto;
 }
 
-.quiz h2 {
-
+.quiz h2{
+  font-size: 36px;
+  color:navy;
+}
+.btn{
+  background-color: gainsboro;
+  color: navy;
+  font-size: 32px;
+  width: 100%;
+  border: 1px solid navy;
+  padding: 10px;
+  margin: 10px 0;
+  text-align: left;
+  cursor:pointer;
 }
 
 .btn.hover.btn.hover:not([disabled]){
@@ -52,7 +64,7 @@ main button {
   cursor: no-drop;
 }
 #next-btn{
-  display: grid;
+  display: none;
   background-color: navy;
   padding: 20px;
   width: 200px;
@@ -60,6 +72,8 @@ main button {
   font-weight: bolder;
   text-align: center;
   margin: auto;
+  cursor: pointer;
+
 }  
 
 .correct{
