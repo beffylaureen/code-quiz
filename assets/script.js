@@ -10,29 +10,12 @@ var answerButtons = document.getElementById("choices");
 var nextButton = document.getElementById("next-btn");
 
 //Timer
-var time=90;
+var time=10;
 var timeInterval;
 var quizScore = 0;
 var questionTally = 1;
 
-function countdown (){
-  var timerInterval = setInterval(function(){
-    secondsLeft--;
-    timeLeft.textContext = "Time left: " + secondsLeft + " s";
-      if (secondsLeft <=0){
-        clearInterval(timerInterval);
-        timeLeft.textContent = "Time's up!";
-        finish.textContent = "Time's up!";
-        gameOver();
-      }else if (questionTally>=questionIndex.length +1){
-        clearInterval(timerInterval);
-        gameOver();
-      }
-      
 
-  },1000);
-
-}
 
 
 var questions = [
@@ -161,39 +144,11 @@ var questions = [
 let currentQuestionIndex = 0;
 let score = 0;
 
-function startQuiz(){
-  currentQuestionIndex = 0;
-  score = 0;
-  nextButton.innerHTML = "Next";
-  showQuestion();
-}
 
 
-function showQuestion(){
-  
-  let currentQuestion = questions[currentQuestionIndex];
-  let questionNumber = currentQuestionIndex +1;
-  questionElement.innerHTML = questionNumber + ". "+ currentQuestion.question;
 
-  currentQuestion.choices.forEach(answer => {
-    const button = document.createElement("button");
-    button.innerHTML = answer.text;
-    button.classList.add("btn");
-    answerButtons.appendChild(button);
-  });
-  
-}
 
-function resetState(){
-  nextButton.style.display = "none";
-  while(answerButtons.firstChild){
-    answerButtons.removeChild(answerButtons.firstChild);
-    if(answer.correct){
-      button.dataset.correct = answer.correct;
-    }
-    answerButtons.addEventListener("click", selectAnswer);
-  } 
-}
+
 
 
 function startQuiz(){
@@ -215,9 +170,31 @@ function startQuiz(){
     }
   },1000)
   //  call the next function to get a question
-  getQuestion();
+  showQuestion();
 }
-function getQuestion (){}
+function showQuestion(){
+  resetState();
+  let currentQuestion = questions[currentQuestionIndex];
+  let questionNumber = currentQuestionIndex +1;
+  questionElement.innerHTML = questionNumber + ". "+ currentQuestion.question;
+
+  currentQuestion.choices.forEach(answer => {
+    const button = document.createElement("button");
+    button.innerHTML = answer.text;
+    button.classList.add("btn");
+    answerButtons.appendChild(button);
+
+  });
+  
+}
+
+function resetState(){
+  nextButton.style.display="none";
+  while(answerButtons.firstChild){
+    answerButtons.removeChild(answerButtons.firstChild);
+  }
+
+}
 
 function quizOver(){
    console.log("quiz over");
