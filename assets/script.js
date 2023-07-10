@@ -10,7 +10,8 @@ var answerButtons = document.getElementById("choices");
 var nextButton = document.getElementById("next-btn");
 
 //Timer
-var secondsLeft = 90;
+var time=90;
+var timeInterval;
 var quizScore = 0;
 var questionTally = 1;
 
@@ -194,56 +195,44 @@ function resetState(){
   } 
 }
 
-function selectAnswer(e){
-  const selectedBtn = e.target;
-  const isCorrect = selectedBtn.dataset.correct === "true";
-  if(isCorrect){
-    selectedBtn.classList.add("correct");
-    score++;
-  }else{
-    selectedBtn.classList.add("incorrect");
 
-  }
-  Array.from(answerButtons.children).forEach(button => {
-    if(button.dataset.correct==="true"){
-      button.classList.add("correct");
+function startQuiz(){
+  // Hide the start section
+  start.style.display="none";
+  // Show the quiz section
+  quiz.style.display="block";
+  // add time to the page
+  timer.textContent=time;
+  // start the timer
+  timeInterval=setInterval(function(){
+    //reduce the time by 1
+    time--;
+    //redisplay the time on the page
+    timer.textContent=time;
+    //check to make sure time doesn't go below 0
+    if (time <=0){
+      quizOver();
     }
-    button.disabled = true;
-  });
-  nextButton.style.display = "block";
+  },1000)
+  //  call the next function to get a question
+  getQuestion();
 }
-function showScore(){
-  resetState();
-  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-  nextButton.innerHTML = "Play Again";
-  nextButton.style.display = "block";
+function getQuestion (){}
 
+function quizOver(){
+   console.log("quiz over");
+
+   // stop timer
+  clearInterval(timeInterval);
+   // hide quiz section
+
+   // show end quiz section
 }
 
 
-function handleNextButton(){
-  currentQuestionIndex++;
-  if(currentQuestionIndex<questions.length){
-    showQuestion();
-  }else{
-    showScore();
-  }
-  }
+startBtn.addEventListener("click", startQuiz)
 
 
-nextButton.addEventListener("click", ()=>{
-  if(currentQuestionIndex < questions.length){
-    handleNextButton();
-  }else{
-    startQuiz()
-  }
-
-start-btn.addEventListener("click", startQuiz
-());
-  
-})
-
-startQuiz()
 
 
 
