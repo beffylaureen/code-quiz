@@ -14,6 +14,7 @@ header {
   font-size: larger;
 }
 
+
 h1 {
   text-align: center;
   color: navy;
@@ -42,6 +43,14 @@ main button {
 .quiz h2 {
 
 }
+
+.btn.hover.btn.hover:not([disabled]){
+  background-color: #222;
+  color: #fff;
+}
+.btn.disabled{
+  cursor: no-drop;
+}
 #next-btn{
   display: grid;
   background-color: navy;
@@ -52,3 +61,10 @@ main button {
   text-align: center;
   margin: auto;
 }  
+
+.correct{
+  background-color: darkgreen;
+}
+.incorrect{
+  background-color:crimson;
+}

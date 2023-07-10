@@ -3,13 +3,33 @@ var startBtn= document.querySelector('#start-btn');
 var quiz= document.querySelector('#quiz');
 var end= document.querySelector('#end');
 var timer=document.querySelector('#timer');
-// Timer
+var next=document.querySelector('#next-btn')
+var questionIndex = 0;
+var questionElement = document.getElementById("question");
+var answerButton = document.getElementById("choices");
+var nextButton = document.getElementById("next-btn");
+
+//Timer
+
 var time=60;
 var timeInterval;
-var questionIndex = 0;
+timer.textContent=time;
+  // start the timer
+  timeInterval=setInterval(function() {
+    // reduce the time by 1
+    time--;
+    // redisplay the time on the page
+    timer.textContent=time;
+    // check to make sure time doesn’t go below 0
+    if (time<=0) {
+      quizOver();
+    }
+  },1000);
 
 
-const questions = [
+
+
+var questions = [
   {
     question:  "What does HTML stand for?", 
     choices:[
@@ -131,22 +151,19 @@ const questions = [
   }
 ];
 
-const questionElement = document.getElementById("question");
-const answerButton = document.getElementById("choices");
-const nextButton = document.getElementById("next-btn");
 
 let currentQuestionIndex = 0;
 let score = 0;
 
 function startQuiz(){
-  currentQuetionIndex = 0;
+  currentQuestionIndex = 0;
   score = 0;
   nextButton.innerHTML = "Next";
   showQuestion();
 }
 
+
 function showQuestion(){
-  resetState()
   let currentQuestion = questions[currentQuestionIndex];
   let questionNumber = currentQuestionIndex +1;
   questionElement.innerHTML = questionNumber + ". "+ currentQuestion.question;
@@ -162,7 +179,7 @@ function showQuestion(){
 function resetState(){
   nextButton.style.display = "none";
   while(choices.firstChild){
-    choices.removeChild(choicesw.firstChild);
+    choices.removeChild(choices.firstChild);
     if(answer.correct){
       button.dataset.correct = answer.correct;
     }
@@ -175,71 +192,52 @@ function selectAnswer(e){
   const isCorrect = selectedBtn.dataset.correct === "true";
   if(isCorrect){
     selectedBtn.classList.add("correct");
+    score++
   }else{
     selectedBtn.classList.add("incorrect");
-    
+
   }
-  }
+  Array.from(answerButtons.children).forEach(button => {
+    if(button.dataset.correct==="true"){
+      button.classList.add("correct");
+    }
+    button.disabled = true;
+  });
+  nextButton.style.display = "block";
 }
+function showScore(){
+  resetState();
+  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+  nextButton.innerHTML = "Play Again";
+  nextButton.style.display = "block";
+
+}
+
+
+function handleNextButton(){
+  currentQuestionIndex++;
+  if(currentQuestionIndex<questions.length){
+    showQuestion();
+  }else{
+    showScore();
+  }
+  }
+
+function countdown(){
+
+  
+}
+
+nextButton.addEventListener("click", ()=>{
+  if(currentQuestionIndex < questions.length){
+    handleNextButton();
+  }else{
+    startQuiz()
+  }
+  
+})
 
 startQuiz()
 
-function startQuiz(){
-  // Hide the start section
-  start.style.display="none";
-  // Show the quiz section
-  quiz.style.display="block";
-  // add time to the page
-  timer.textContent=time;
-  // start the timer
-  timeInterval=setInterval(function() {
-    // reduce the time by 1
-    time--;
-    // redisplay the time on the page
-    timer.textContent=time;
-    // check to make sure time doesn't go below 0
-    if (time<=0) {
-      quizOver();
-    }
-  },1000);
-  // call the next function to get a question
-  getQuestion()  
 
-}
-
-function getQuestion(n) {
-  askQuestion.textContent=questionItems[n].question;
-  answerBtn1.textContent=questionItems[n].choices[0];
-  answerBtn2.textContent=questionItems[n].choices[1];
-  answerBtn3.textContent=questionItems[n].choices[2];
-  answerBtn4.textContent=questionItems[n].choices[3];
-}
-
-function showQuestions (questions, quizContainer){
-  var outut = [];
-  var answers;
-  for (var i=0; i<questions.length; i++){
-    answers = [];
-    for(letter in questions [i].answers){
-      answers.push(
-        '<label>'
-          +'<input type="radio" name="question'+i+'" value="'+letter+'>'
-          + letter + ': '
-          + questions[i].answers[letter]
-        + '<label>'
-    );
-  }
-}
-function quizOver() {
-  console.log('Quiz Over');
-  // stop timer
-  clearInterval(timeInterval);
-  // hide quiz section
-
-  // show end quiz section
-
-}
-
-
-startBtn.addEventListener("click", startQuiz);
 
