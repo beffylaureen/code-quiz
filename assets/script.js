@@ -10,10 +10,10 @@ var answerButtons = document.getElementById("choices");
 var nextButton = document.getElementById("next-btn");
 
 //Timer
-var time=10;
+var time=60;
 var timeInterval;
 var quizScore = 0;
-var questionTally = 1;
+
 
 
 
@@ -68,26 +68,7 @@ var questions = [
     ]
     
   },
-  {
-    question: "What tag is used to define a hyperlink, or link to another page?",
-    choices: [
-      {text: "<blockquote>", correct: false},
-      {text: "<strong>", correct: false},
-      {text: "<a>", correct: true},
-      {text: "<em>", correct: false},
-    ]
-    
-  },
-  {
-    question: "What tag is used to define a standard cell inside a table",
-    choices: [
-      {text: "<button>", correct: false},
-      {text: "<footer>", correct: false},
-      {text: "<h1> to <h6>", correct: false},
-      {text: "<td>", correct: true},
-    ]
-    
-  },
+  
   {
     question: "In CSS and HTML, colors are displayed by combining these three shades of light:",
     choices: [
@@ -170,9 +151,9 @@ function startQuiz(){
     }
   },1000)
   //  call the next function to get a question
-  showQuestion();
+  getQuestion();
 }
-function showQuestion(){
+function getQuestion(){
   resetState();
   let currentQuestion = questions[currentQuestionIndex];
   let questionNumber = currentQuestionIndex +1;
@@ -183,6 +164,10 @@ function showQuestion(){
     button.innerHTML = answer.text;
     button.classList.add("btn");
     answerButtons.appendChild(button);
+    if(answer.correct){
+      button.dataset.correct=answer.correct;
+    }
+    button.addEventListener("click", selectAnswer);
 
   });
   
@@ -209,7 +194,49 @@ function quizOver(){
 
 startBtn.addEventListener("click", startQuiz)
 
+function selectAnswer(e){
+  const selectedBtn=e.target;
+  const isCorrect = selectedBtn.dataset.correct === "true";
+  if(isCorrect){
+    selectedBtn.classList.add("correct");
+    score++;
+  }else{
+    selectedBtn.classList.add("incorrect");
+  }
+  Array.from(answerButtons.children).forEach(button => {
+    if(button.dataset.correct === "true"){
+      button.classList.add("correct");
+    }
+    button.disabled = true;
+    });
+    nextButton.style.display="block";
+  }
+ 
+function showScore(){
+  resetState();
+  questionElement.innerHTML=`You scored ${score} out of ${questions.length}!`;
 
+}
+
+
+function handleNextButton(){
+  currentQuestionIndex++;
+  if(currentQuestionIndex<questions.length){
+    getQuestion();
+  }else{
+    showScore();
+  }
+  }
+
+
+
+nextButton.addEventListener("click", ()=>{
+  if(currentQuestionIndex<questions.length){
+    handleNextButton();
+  }else{
+    startQuiz();
+  }
+  })
 
 
 

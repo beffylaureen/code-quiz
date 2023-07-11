@@ -41,13 +41,13 @@ main button {
 }
 
 .quiz h2{
-  font-size: 36px;
+  font-size: 18px;
   color:navy;
 }
 .btn{
   background-color: gainsboro;
   color: navy;
-  font-size: 32px;
+  font-size: 18px;
   width: 100%;
   border: 1px solid navy;
   padding: 10px;
