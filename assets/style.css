@@ -82,3 +82,8 @@ main button {
 .incorrect{
   background-color:crimson;
 }
+
+.end h3{
+  font-size: 36px;
+  color: red
+}

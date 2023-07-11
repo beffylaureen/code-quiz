@@ -10,7 +10,7 @@ var answerButtons = document.getElementById("choices");
 var nextButton = document.getElementById("next-btn");
 
 //Timer
-var time=60;
+var time=30;
 var timeInterval;
 var quizScore = 0;
 
@@ -182,7 +182,7 @@ function resetState(){
 }
 
 function quizOver(){
-   console.log("quiz over");
+   console.log("quiz over")
 
    // stop timer
   clearInterval(timeInterval);
@@ -202,6 +202,8 @@ function selectAnswer(e){
     score++;
   }else{
     selectedBtn.classList.add("incorrect");
+    timer.textContent=time-10;
+    
   }
   Array.from(answerButtons.children).forEach(button => {
     if(button.dataset.correct === "true"){
