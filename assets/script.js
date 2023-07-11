@@ -202,7 +202,7 @@ function selectAnswer(e){
     score++;
   }else{
     selectedBtn.classList.add("incorrect");
-    timer.textContent=time-10;
+    time=time-10;
     
   }
   Array.from(answerButtons.children).forEach(button => {
@@ -217,7 +217,17 @@ function selectAnswer(e){
 function showScore(){
   resetState();
   questionElement.innerHTML=`You scored ${score} out of ${questions.length}!`;
-
+  let inputEl = document.createElement('input')
+  let buttonEl = document.createElement('button')
+  buttonEl.textContent ='Submit'
+  answerButtons.innerHTML=`Enter your initials:`
+  answerButtons.appendChild(inputEl)
+  answerButtons.appendChild(buttonEl)
+  let scoreData = {
+    initials: '',
+    score: score
+  }
+  updateHighScores(scoreData)
 }
 
 
@@ -229,7 +239,13 @@ function handleNextButton(){
     showScore();
   }
   }
-
+function updateHighScores(scoreData){
+  var scores=JSON.parse(localStorage.getItem("scores"));
+  if(!scores){
+    scores=[];
+  }
+scores.push(scoreData)
+}
 
 
 nextButton.addEventListener("click", ()=>{
