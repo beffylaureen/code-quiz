@@ -231,16 +231,16 @@ var initialsEl = document.querySelector ('#initials');
 var enterInitials = document.querySelector ('#enter-initials');
 
 function showScore() {
-  // resetState();
+  resetState();
   console.log('Your Score', yourScore);
   yourScore.textContent=score;
-  // questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-  // let inputEl = document.createElement('input')
-  // let buttonEl = document.createElement('button')
-  // buttonEl.textContent = 'Submit'
-  // answerButtons.innerHTML = `Enter your initials:`
-  // answerButtons.appendChild(inputEl)
-  // answerButtons.appendChild(buttonEl)
+  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
+  let inputEl = document.createElement('input')
+  let buttonEl = document.createElement('button')
+  buttonEl.textContent = 'Submit'
+  answerButtons.innerHTML = `Enter your initials:`
+  answerButtons.appendChild(inputEl)
+  answerButtons.appendChild(buttonEl)
 
 
 }

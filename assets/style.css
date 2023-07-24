@@ -76,6 +76,19 @@ main button {
 
 }  
 
+#a-btn{
+  display: none;
+  background-color: navy;
+  padding: 20px;
+  width: 200px;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+  margin: auto;
+  cursor: pointer;
+
+}  
+
 .correct{
   background-color: darkgreen;
 }
