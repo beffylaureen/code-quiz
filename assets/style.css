@@ -19,6 +19,7 @@ h1 {
   text-align: center;
   color: navy;
   font-size: 56px;
+  margin-top: 20px;
 }
 
 main p {
@@ -95,6 +96,14 @@ main button {
 .incorrect{
   background-color:crimson;
 }
+
+.container{
+  text-align: center;
+  color:black;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
 
 h3{
   font-size: 24px;
